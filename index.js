@@ -204,3 +204,15 @@ client.on('disconnected', (reason) => {
 // ── Start the bot ─────────────────────────────
 console.log('🚀 Starting WhatsApp AI Bot...');
 client.initialize();
+
+const client = new Client({
+  puppeteer: {
+    headless: true,
+    executablePath: process.env.CHROME_BIN || "/usr/bin/chromium",
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage"
+    ]
+  }
+});
