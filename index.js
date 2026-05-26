@@ -99,18 +99,17 @@ async function getAIReply(message, userId) {
 
 // ── WhatsApp Client Setup ─────────────────────
 const client = new Client({
-  authStrategy: new LocalAuth({ clientId: 'ai-bot' }),
+  authStrategy: new LocalAuth({ clientId: "ai-bot" }),
   puppeteer: {
+    headless: true,
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/chromium",
     args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--disable-gpu',
-    ],
-  },
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-gpu"
+    ]
+  }
 });
 
 // ── QR Code (scan this to login) ─────────────
